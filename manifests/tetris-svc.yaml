@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: tetris-service
   namespace: tetris
+  labels:
+    app: tetris
 spec:
   selector:
     app: tetris
@@ -10,5 +12,4 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-    nodePort: 32000
-  type: NodePort
+  type: ClusterIP  # Changed from NodePort to ClusterIP for ALB
