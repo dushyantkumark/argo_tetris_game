@@ -24,7 +24,7 @@ spec:
         - containerPort: 80
           name: http
           protocol: TCP
-        # Resource limits for better performance and HPA
+        # Resource limits for better performance and HPA in eks
         resources:
           requests:
             memory: "64Mi"
