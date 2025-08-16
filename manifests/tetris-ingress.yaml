@@ -20,9 +20,9 @@ metadata:
     alb.ingress.kubernetes.io/unhealthy-threshold-count: '3'
 
     # SSL/TLS Configuration
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:980921730778:certificate/4d4100d8-be09-4aa8-8c93-a603297901af
-    alb.ingress.kubernetes.io/ssl-redirect: '443'
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    #alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:980921730778:certificate/4d4100d8-be09-4aa8-8c93-a603297901af
+    #alb.ingress.kubernetes.io/ssl-redirect: '443'
+    #alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
 
     # Security and performance optimizations
     alb.ingress.kubernetes.io/backend-protocol: HTTP
