@@ -1,4 +1,3 @@
-# Ingress for Tetris Application using AWS Load Balancer Controller
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -20,33 +19,21 @@ metadata:
     alb.ingress.kubernetes.io/healthy-threshold-count: '2'
     alb.ingress.kubernetes.io/unhealthy-threshold-count: '3'
 
-    # SSL/TLS Configuration (optional - uncomment if you have a certificate)
-     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:980921730778:certificate/4d4100d8-be09-4aa8-8c93-a603297901af
-     alb.ingress.kubernetes.io/ssl-redirect: '443'
-     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    # SSL/TLS Configuration
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:980921730778:certificate/4d4100d8-be09-4aa8-8c93-a603297901af
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
 
-    # Security groups (optional - will use default if not specified)
-    # alb.ingress.kubernetes.io/security-groups: sg-xxxxxxxxx
-
-    # Subnets (optional - will auto-discover public subnets if not specified)
-    # alb.ingress.kubernetes.io/subnets: subnet-xxxxxxxxx,subnet-yyyyyyyyy
+    # Security and performance optimizations
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/success-codes: '200'
 
     # Additional tags for the ALB
-    alb.ingress.kubernetes.io/tags: Environment=production,Application=tetris,ManagedBy=kubernetes
+    alb.ingress.kubernetes.io/tags: Environment=production,Application=tetris,ManagedBy=kubernetes,Cluster=prod-eks-cluster
 
 spec:
   rules:
-  - host: tetris.example.com  # Replace with your actual domain or remove for any host
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: tetris-service
-            port:
-              number: 80
-  # Alternative rule without host specification (accepts any host)
+  # Single rule without host specification - accepts any host
   - http:
       paths:
       - path: /
