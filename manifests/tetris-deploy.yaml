@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tetris-deployment
-  namespace: tetris-game
+  namespace: tetris
 spec:
   replicas: 2 # You can adjust the number of replicas as needed
   selector:
